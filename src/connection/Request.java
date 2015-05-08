@@ -31,5 +31,8 @@ public class Request implements Serializable{
     public RequestEnum getRequestType() { return requestType; }
     public void setRequestType(RequestEnum requestType) { this.requestType = requestType; }
 
+    public String toString(){
+    	return requestType.toString() + " : " + parameters;
+    }
 
 }

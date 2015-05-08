@@ -2,6 +2,7 @@ package connection;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import tools.Serializor;
 import constants.ConstantsConnection;
 
 public class Server {
@@ -32,12 +34,12 @@ public class Server {
 						long taille = 0;
 	
 						// Création de l'entrée
-						InputStream inpute = socket.getInputStream();
+						InputStream input = socket.getInputStream();
 	
-						OutputStream out = new FileOutputStream("tmp.txt");
+						OutputStream out = new FileOutputStream("tmp.ser");
 	
 						// Reçoit du client
-						BufferedInputStream inBuffer = new BufferedInputStream(inpute);
+						BufferedInputStream inBuffer = new BufferedInputStream(input);
 	
 						// Envoi vers le fichier
 						BufferedOutputStream outBuffer = new BufferedOutputStream(out);
@@ -61,9 +63,10 @@ public class Server {
 	
 						out.flush();
 						out.close();
-						inpute.close();
+						input.close();
 						socket.close();
-	
+						Request request = (Request)Serializor.unserialize(new File("tmp.ser"));
+						System.out.println(request);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

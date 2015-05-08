@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import connection.Request;
 import entries.Entry;
 
 public abstract class Serializor {
@@ -29,24 +30,24 @@ public abstract class Serializor {
 			oos.writeObject(poSerializableObject) ;
 			oos.close();
 		} catch (FileNotFoundException e) {
-	    	System.out.println("filenotfound " + e.getMessage());
+			e.printStackTrace();
 		} catch (IOException e) {
-	    	System.out.println("io " + e.getMessage());
+	    	e.printStackTrace();
 		}return file;
 	}
 	
-	public static Object unserialize(File fFile) throws FileNotFoundException, IOException{
+	public static Request unserialize(File fFile) throws FileNotFoundException, IOException{
 		 // ouverture d'un flux sur un fichier
 		ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fFile)) ;
 		 // désérialization de l'objet
-		Entry oEntry = null;
+		Request request = null;
 		try {
-			oEntry = (Entry)ois.readObject();
+			request = (Request)ois.readObject();
 			ois.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return oEntry;
+		return request;
 	}
 
 }

@@ -1,9 +1,11 @@
 package components;
 
+import java.io.Serializable;
+
 import utilEnum.DeviceOS;
 import utilEnum.DeviceTypeEnum;
 
-public class Device extends Component{
+public class Device extends Component implements Serializable{
 
     private String 			deviceIpAddress ;
     private DeviceTypeEnum 	deviceType;

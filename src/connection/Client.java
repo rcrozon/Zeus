@@ -40,9 +40,9 @@ public class Client extends Connection {
 		    outputStream.close();
 		    clientSocket.close();
 	    } catch (UnknownHostException e) {
-	    	System.out.println("unknowHost " + e.getMessage());
+	    	e.printStackTrace();
 	    } catch (IOException e) {
-	    	System.out.println("io " + e.getMessage());
+	    	e.printStackTrace();
 	    }
 	}
 }
