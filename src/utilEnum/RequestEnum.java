@@ -5,5 +5,13 @@ package utilEnum;
  */
 public enum RequestEnum {
 
-    GET_DEVICE;
+    GET_DEVICE,
+    GET_ENTRY,
+    
+    
+    
+    
+    RETURN_DEVICE,
+    RETURN_ENTRY
+    ;
 }

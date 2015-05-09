@@ -14,6 +14,5 @@ public class FolderEntry extends Entry{
 	public FolderEntry(String psPath){
 		super(psPath);
 		msPath = psPath;
-		
 	}
 }

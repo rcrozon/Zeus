@@ -7,7 +7,8 @@ import utilEnum.DeviceTypeEnum;
 
 public class Device extends Component implements Serializable{
 
-    private String 			deviceIpAddress ;
+	private static final long serialVersionUID = -7029820968846251459L;
+	private String 			deviceIpAddress ;
     private DeviceTypeEnum 	deviceType;
     private DeviceOS 		deviceOS;
     private String	 		deviceName;

@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public abstract class Entry extends File {
 
-	Vector<Entry> mvEntries ;
+	Vector<Entry> mvEntries = new Vector<Entry>();
 	/**
 	 * Serial
 	 */
@@ -49,4 +49,7 @@ public abstract class Entry extends File {
 		return vEntries;
 	}
 
+	public String toString(){
+		return this.getAbsolutePath() + " : \n" + mvEntries; 
+	}
 }

@@ -36,9 +36,10 @@ public class Client extends Connection {
 
 		    outputStream.write(mybytearray, 0, mybytearray.length); //write file to the output stream byte by byte
 		    outputStream.flush();
-		    bufferedInputStream.close();
 		    outputStream.close();
+		    bufferedInputStream.close();
 		    clientSocket.close();
+		    fileInputStream.close();
 	    } catch (UnknownHostException e) {
 	    	e.printStackTrace();
 	    } catch (IOException e) {

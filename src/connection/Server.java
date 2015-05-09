@@ -29,9 +29,7 @@ public class Server {
 						// On attend la connexion d'un client
 						Socket socket = serverSocket.accept();
 	
-						Byte[] taillefichier;
 						int lu;
-						long taille = 0;
 	
 						// Création de l'entrée
 						InputStream input = socket.getInputStream();
@@ -46,13 +44,9 @@ public class Server {
 	
 						lu = inBuffer.read();
 	
-						int compteur = 0;
-	
 						while (lu > -1) {
 							outBuffer.write(lu);
-							lu = inBuffer.read();
-	
-							compteur++;
+							lu = inBuffer.read();	
 						}
 	
 						outBuffer.write(lu);
@@ -65,8 +59,9 @@ public class Server {
 						out.close();
 						input.close();
 						socket.close();
+						
 						Request request = (Request)Serializor.unserialize(new File("tmp.ser"));
-						System.out.println(request);
+						Connection.HandleRequest(request);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

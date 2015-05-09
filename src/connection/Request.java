@@ -6,12 +6,15 @@ import java.util.Map;
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
 
+import components.Device;
+
 /**
  * Created by Romain on 03/05/2015.
  */
 public class Request implements Serializable{
 
 	private static final long serialVersionUID = 821116012528203242L;
+	private Device senderDevice;
 	private RequestEnum requestType;
     private Map<ParamEnum, Object> parameters = null;
 
@@ -30,8 +33,10 @@ public class Request implements Serializable{
     public void setParameters(Map<ParamEnum, Object> parameters) { this.parameters = parameters; }
     public RequestEnum getRequestType() { return requestType; }
     public void setRequestType(RequestEnum requestType) { this.requestType = requestType; }
+    public Device getSenderDevice() { return senderDevice; }
+	public void setSenderDevice(Device senderDevice) { this.senderDevice = senderDevice; }
 
-    public String toString(){
+	public String toString(){
     	return requestType.toString() + " : " + parameters;
     }
 
