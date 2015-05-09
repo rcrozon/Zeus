@@ -1,7 +1,13 @@
 package entries;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
+import tools.UtilsFile;
 
 public abstract class Entry extends File {
 
@@ -10,6 +16,7 @@ public abstract class Entry extends File {
 	 * Serial
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final int  nbPictures = 4;
 	
 	public Entry(String pPathname) {
 		super(pPathname);
@@ -51,5 +58,23 @@ public abstract class Entry extends File {
 
 	public String toString(){
 		return this.getAbsolutePath() + " : \n" + mvEntries; 
+	}
+	
+	public List<Object> getThumbnails() throws IOException{
+		List<Object> thumbnailsList = new ArrayList<>(); 
+		for (Entry entry : mvEntries){
+			if (entry instanceof FolderEntry){
+				thumbnailsList.add(entry.getThumbnails());
+			}else {
+				FileEntry fileEntry = (FileEntry)entry;
+				if (UtilsFile.isPicture(fileEntry)){
+					thumbnailsList.add(Files.readAllBytes(fileEntry.toPath()));
+					if (thumbnailsList.size() >= nbPictures){
+						return thumbnailsList;
+					}
+				}
+			}
+		}
+		return thumbnailsList;
 	}
 }

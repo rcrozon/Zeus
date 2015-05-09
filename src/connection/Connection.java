@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import tools.UtilsFile;
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
 import configuration.Configuration;
+import constants.ConstantsConnection;
 import entries.Entry;
 import entries.FolderEntry;
 
@@ -14,6 +16,7 @@ public abstract class Connection {
 
 	public static Server server;
 	public static Client client;
+	
 	
 	public static Server startServerInstance(){
 		if (server == null){
@@ -46,17 +49,31 @@ public abstract class Connection {
 			case GET_ENTRY:
 				response.setRequestType(RequestEnum.RETURN_ENTRY);
 				Entry entry = new FolderEntry((String)request.getParameters().get(ParamEnum.ENTRY_PATH));
-				entry.setMvEntries(entry.listFiles());
+				if (entry.exists()){
+					entry.setMvEntries(entry.listFiles());
+				}
 				parameters.put(ParamEnum.ENTRIES, entry);
+				break;
+			case GET_THUMBNAILS:
+				response.setRequestType(RequestEnum.RETURN_THUMBNAILS);
+				Entry entryThumbnails = new FolderEntry((String)request.getParameters().get(ParamEnum.ENTRY_PATH));
+				try {
+					parameters.put(ParamEnum.THUMBNAILS, entryThumbnails.getThumbnails());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				break;
 			case RETURN_DEVICE: 
 				System.out.println("Returned device " + request.getParameters().get(ParamEnum.DEVICE));
-				return 0;
+				return ConstantsConnection.EXIT_SUCCESS;
 			case RETURN_ENTRY: 
 				System.out.println("Returned entry " + request.getParameters().get(ParamEnum.ENTRIES));
-				return 0;
+				return ConstantsConnection.EXIT_SUCCESS;
+			case RETURN_THUMBNAILS:
+				System.out.println("Returned thumbnails " + request.getParameters().get(ParamEnum.THUMBNAILS));
+				return ConstantsConnection.EXIT_SUCCESS;
 			default:
-				return -1;
+				return ConstantsConnection.EXIT_FAILURE;
 		}
 		parameters.put(ParamEnum.RECIPIENT_IP_ADDRESS, request.getSenderDevice().getDeviceIpAddress());
 		response.setSenderDevice(Configuration.getInstance().getDevice());

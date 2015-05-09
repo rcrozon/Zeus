@@ -8,7 +8,8 @@ public enum ParamEnum {
     DEVICE,
     ENTRY_PATH,
     RECIPIENT_IP_ADDRESS,
-    ENTRIES
+    ENTRIES,
+    THUMBNAILS
     ;
 
 }

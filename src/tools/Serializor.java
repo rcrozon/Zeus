@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import connection.Request;
-import entries.Entry;
 
 public abstract class Serializor {
 
@@ -41,9 +40,10 @@ public abstract class Serializor {
 		ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fFile)) ;
 		 // désérialization de l'objet
 		Request request = null;
-		try {
+		try { 
 			request = (Request)ois.readObject();
 			ois.close();
+			fFile.delete();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

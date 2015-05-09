@@ -12,7 +12,5 @@ public class FileEntry extends Entry{
 	 * Serial
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-
+		
 }
