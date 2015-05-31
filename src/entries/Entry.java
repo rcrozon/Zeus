@@ -60,11 +60,18 @@ public abstract class Entry extends File {
 		return this.getAbsolutePath() + " : \n" + mvEntries; 
 	}
 	
-	public List<Object> getThumbnails() throws IOException{
-		List<Object> thumbnailsList = new ArrayList<>(); 
+	public List<byte[]> getThumbnails() throws IOException{
+		List<byte[]> thumbnailsList = new ArrayList<>(); 
 		for (Entry entry : mvEntries){
 			if (entry instanceof FolderEntry){
-				thumbnailsList.add(entry.getThumbnails());
+				entry.setMvEntries(Entry.getEntries(entry.listFiles()));
+				for(byte[] img : entry.getThumbnails()){
+					if (thumbnailsList.size() < nbPictures){
+						thumbnailsList.add(img);
+					}else{
+						return thumbnailsList;
+					}
+				}
 			}else {
 				FileEntry fileEntry = (FileEntry)entry;
 				if (UtilsFile.isPicture(fileEntry)){

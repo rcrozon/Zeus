@@ -1,14 +1,7 @@
 package zeus;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import utilEnum.ParamEnum;
-import utilEnum.RequestEnum;
 import configuration.Configuration;
 import connection.Connection;
-import connection.Request;
 
 public class Zeus {
 
@@ -18,7 +11,7 @@ public class Zeus {
 		System.out.println(Configuration.getInstance().getDevice());
 		
 		Connection.startServerInstance();
-
+/*
 		// REQUEST 1
 		Request request = new Request();
 		request.setRequestType(RequestEnum.GET_DEVICE);
@@ -58,6 +51,6 @@ public class Zeus {
 		request3.setParameters(parameters3);
 
 		Connection.getClientInstance().sendSerializedObject(request3);
-
+*/
 	}
 }

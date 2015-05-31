@@ -2,9 +2,9 @@ package connection;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import tools.UtilsFile;
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
 import configuration.Configuration;
@@ -57,6 +57,7 @@ public abstract class Connection {
 			case GET_THUMBNAILS:
 				response.setRequestType(RequestEnum.RETURN_THUMBNAILS);
 				Entry entryThumbnails = new FolderEntry((String)request.getParameters().get(ParamEnum.ENTRY_PATH));
+				entryThumbnails.setMvEntries(Entry.getEntries(entryThumbnails.listFiles()));
 				try {
 					parameters.put(ParamEnum.THUMBNAILS, entryThumbnails.getThumbnails());
 				} catch (IOException e) {
@@ -71,6 +72,7 @@ public abstract class Connection {
 				return ConstantsConnection.EXIT_SUCCESS;
 			case RETURN_THUMBNAILS:
 				System.out.println("Returned thumbnails " + request.getParameters().get(ParamEnum.THUMBNAILS));
+				List<byte[]> picturesList = (List<byte[]>)request.getParameters().get(ParamEnum.THUMBNAILS);
 				return ConstantsConnection.EXIT_SUCCESS;
 			default:
 				return ConstantsConnection.EXIT_FAILURE;
