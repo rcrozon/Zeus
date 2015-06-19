@@ -7,6 +7,7 @@ import java.util.Map;
 
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
+import vocalAnalysis.VocalAnalyser;
 import configuration.Configuration;
 import constants.ConstantsConnection;
 import entries.Entry;
@@ -57,13 +58,20 @@ public abstract class Connection {
 			case GET_THUMBNAILS:
 				response.setRequestType(RequestEnum.RETURN_THUMBNAILS);
 				Entry entryThumbnails = new FolderEntry((String)request.getParameters().get(ParamEnum.ENTRY_PATH));
-				entryThumbnails.setMvEntries(Entry.getEntries(entryThumbnails.listFiles()));
+				if (entryThumbnails.listFiles() != null){
+					entryThumbnails.setMvEntries(Entry.getEntries(entryThumbnails.listFiles()));
+				}
 				try {
 					parameters.put(ParamEnum.THUMBNAILS, entryThumbnails.getThumbnails());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				break;
+			case VOCAL_COMMAND:
+				VocalAnalyser.analyseVocalRequest(request);
+				response.setRequestType(RequestEnum.VOCAL_RESPONSE);
+				parameters.put(ParamEnum.VOCAL_COMMAND, Configuration.getInstance().getDevice());
+				break;		
 			case RETURN_DEVICE: 
 				System.out.println("Returned device " + request.getParameters().get(ParamEnum.DEVICE));
 				return ConstantsConnection.EXIT_SUCCESS;

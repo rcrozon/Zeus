@@ -2,10 +2,8 @@ package components;
 
 public class Component {
 
-	
-	public Component(){
-		
-	}
+	protected String name;
+	protected String description;
 	
 	protected int id ;
 	/**
@@ -21,16 +19,16 @@ public class Component {
 		this.id = id;
 	}
 	/**
-	 * @return the libelle
+	 * @return the name
 	 */
-	public String getLibelle() {
-		return libelle;
+	public String getName() {
+		return name;
 	}
 	/**
-	 * @param libelle the libelle to set
+	 * @param name the name to set
 	 */
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setName(String name) {
+		this.name = name;
 	}
 	/**
 	 * @return the description
@@ -44,7 +42,5 @@ public class Component {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	protected String libelle;
-	protected String description;
 	
 }

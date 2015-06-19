@@ -9,7 +9,8 @@ public enum ParamEnum {
     ENTRY_PATH,
     RECIPIENT_IP_ADDRESS,
     ENTRIES,
-    THUMBNAILS
+    THUMBNAILS,
+    VOCAL_COMMAND
     ;
 
 }

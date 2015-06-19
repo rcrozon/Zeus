@@ -1,7 +1,13 @@
 package zeus;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import utilEnum.ParamEnum;
+import utilEnum.RequestEnum;
 import configuration.Configuration;
 import connection.Connection;
+import connection.Request;
 
 public class Zeus {
 
@@ -52,5 +58,17 @@ public class Zeus {
 
 		Connection.getClientInstance().sendSerializedObject(request3);
 */
+		Request request4 = new Request();
+		request4.setRequestType(RequestEnum.VOCAL_COMMAND);
+		
+		Map<ParamEnum, Object> parameters4 = new HashMap<>();
+		//TODO to change
+		parameters4.put(ParamEnum.RECIPIENT_IP_ADDRESS, Configuration.getInstance().getDevice().getDeviceIpAddress());
+		
+		parameters4.put(ParamEnum.VOCAL_COMMAND, "joue le morceau suivant");
+		request4.setSenderDevice(Configuration.getInstance().getDevice());
+		request4.setParameters(parameters4);
+
+		Connection.getClientInstance().sendSerializedObject(request4);
 	}
 }
