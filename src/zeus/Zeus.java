@@ -17,7 +17,8 @@ public class Zeus {
 		System.out.println(Configuration.getInstance().getDevice());
 		
 		Connection.startServerInstance();
-/*
+
+		Configuration.loadAvailableDevices();
 		// REQUEST 1
 		Request request = new Request();
 		request.setRequestType(RequestEnum.GET_DEVICE);
@@ -29,7 +30,7 @@ public class Zeus {
 		request.setParameters(parameters);
 
 		Connection.getClientInstance().sendSerializedObject(request);
-		
+		/*
 		// REQUEST 2
 		Request request2 = new Request();
 		request2.setRequestType(RequestEnum.GET_ENTRY);
@@ -57,7 +58,7 @@ public class Zeus {
 		request3.setParameters(parameters3);
 
 		Connection.getClientInstance().sendSerializedObject(request3);
-*/
+
 		Request request4 = new Request();
 		request4.setRequestType(RequestEnum.VOCAL_COMMAND);
 		
@@ -70,5 +71,7 @@ public class Zeus {
 		request4.setParameters(parameters4);
 
 		Connection.getClientInstance().sendSerializedObject(request4);
+		
+		*/
 	}
 }

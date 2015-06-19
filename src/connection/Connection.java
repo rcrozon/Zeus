@@ -8,6 +8,9 @@ import java.util.Map;
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
 import vocalAnalysis.VocalAnalyser;
+
+import components.Device;
+
 import configuration.Configuration;
 import constants.ConstantsConnection;
 import entries.Entry;
@@ -74,6 +77,7 @@ public abstract class Connection {
 				break;		
 			case RETURN_DEVICE: 
 				System.out.println("Returned device " + request.getParameters().get(ParamEnum.DEVICE));
+				Configuration.getAvailableDevices().add((Device)request.getParameters().get(ParamEnum.DEVICE));
 				return ConstantsConnection.EXIT_SUCCESS;
 			case RETURN_ENTRY: 
 				System.out.println("Returned entry " + request.getParameters().get(ParamEnum.ENTRIES));

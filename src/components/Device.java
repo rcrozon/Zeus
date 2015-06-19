@@ -38,4 +38,6 @@ public class Device extends Component implements Serializable{
 	public String toString(){
 		return "Device : " + deviceName + " (" + deviceIpAddress + ") -- " + deviceOS.toString() ;
 	}
+	
+	
 }
