@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<sara>
+	<joue>
+		<la>
+			<morceau>PLAY</morceau>
+		</la>
+		<le>
+			<morceau>RESUME</morceau>
+		</le>
+	</joue>
+</sara>
