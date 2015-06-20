@@ -42,6 +42,7 @@ public class Configuration {
     	localDevice.setDeviceIpAddress(UtilsDevices.getLocalDeviceIpAddress());
     	Configuration.getInstance().setDevice(localDevice);
     }
+    
 
 	public static List<Device> getAvailableDevices(){
 		if (availableDevices == null){

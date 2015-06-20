@@ -1,29 +1,25 @@
 package zeus;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import alarm.AlarmClock;
-import alarm.AlarmsRegister;
+import configuration.Configuration;
+import connection.Connection;
 
 public class Zeus {
 
 	public static void main(String[] args) {
 
-//		Configuration.initConfiguration();
-//		System.out.println(Configuration.getInstance().getDevice());
+		Configuration.initConfiguration();
+		System.out.println(Configuration.getInstance().getDevice());
 		
-//		Connection.startServerInstance();
+		Connection.startServerInstance();
 
-//		Configuration.loadAvailableDevices();*
-		String date = "20/06/2015 12:54:00";
-		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+//		Configuration.loadAvailableDevices();
+//		String date = "20/06/2015 12:54:00";
+//		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 //		try {
 //			AlarmClock alarmClock = new AlarmClock(formater.parse(date));
-			AlarmClock alarmClock = new AlarmClock(new Date());
-			AlarmsRegister.getAlarmClocks().add(alarmClock);
-			AlarmsRegister.startAlarms();
+//			AlarmClock alarmClock = new AlarmClock(new Date());
+//			AlarmsRegister.getAlarmClocks().add(alarmClock);
+//			AlarmsRegister.startAlarms();
 //		} catch (ParseException e) {
 //			e.printStackTrace();
 //		}
