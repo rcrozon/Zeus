@@ -1,35 +1,43 @@
 package zeus;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import utilEnum.ParamEnum;
-import utilEnum.RequestEnum;
-import configuration.Configuration;
-import connection.Connection;
-import connection.Request;
+import alarm.AlarmClock;
+import alarm.AlarmsRegister;
 
 public class Zeus {
 
 	public static void main(String[] args) {
 
-		Configuration.initConfiguration();
-		System.out.println(Configuration.getInstance().getDevice());
+//		Configuration.initConfiguration();
+//		System.out.println(Configuration.getInstance().getDevice());
 		
-		Connection.startServerInstance();
+//		Connection.startServerInstance();
 
-		Configuration.loadAvailableDevices();
+//		Configuration.loadAvailableDevices();*
+		String date = "20/06/2015 12:54:00";
+		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+//		try {
+//			AlarmClock alarmClock = new AlarmClock(formater.parse(date));
+			AlarmClock alarmClock = new AlarmClock(new Date());
+			AlarmsRegister.getAlarmClocks().add(alarmClock);
+			AlarmsRegister.startAlarms();
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		// REQUEST 1
-		Request request = new Request();
-		request.setRequestType(RequestEnum.GET_DEVICE);
-		request.setSenderDevice(Configuration.getInstance().getDevice());
-		
-		Map<ParamEnum, Object> parameters = new HashMap<>();
-		parameters.put(ParamEnum.RECIPIENT_IP_ADDRESS, Configuration.getInstance().getDevice().getDeviceIpAddress());
-
-		request.setParameters(parameters);
-
-		Connection.getClientInstance().sendSerializedObject(request);
+//		Request request = new Request();
+//		request.setRequestType(RequestEnum.GET_DEVICE);
+//		request.setSenderDevice(Configuration.getInstance().getDevice());
+//		
+//		Map<ParamEnum, Object> parameters = new HashMap<>();
+//		parameters.put(ParamEnum.RECIPIENT_IP_ADDRESS, Configuration.getInstance().getDevice().getDeviceIpAddress());
+//
+//		request.setParameters(parameters);
+//
+//		Connection.getClientInstance().sendSerializedObject(request);
 		/*
 		// REQUEST 2
 		Request request2 = new Request();

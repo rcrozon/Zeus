@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import threads.ConnectionThread;
+import threads.DevicesLoaderThread;
 import tools.UtilsDevices;
 import utilEnum.ParamEnum;
 import utilEnum.RequestEnum;
@@ -49,16 +51,17 @@ public class Configuration {
 	}
 	
 	public static void loadAvailableDevices(){
-		Request request = new Request();
-		request.setRequestType(RequestEnum.GET_DEVICE);
-		request.setSenderDevice(Configuration.getInstance().getDevice());
-		
-		Map<ParamEnum, Object> parameters = new HashMap<>();
-		request.setParameters(parameters);
-		
+		Device localDevice = Configuration.getInstance().getDevice();
 		for(int i = 0; i < ConstantsConnection.MAX_IP; i++){
+			Request request = new Request();
+			request.setRequestType(RequestEnum.GET_DEVICE);
+			request.setSenderDevice(localDevice);
+			
+			Map<ParamEnum, Object> parameters = new HashMap<>();
 			parameters.put(ParamEnum.RECIPIENT_IP_ADDRESS, ConstantsConnection.IP_BASE + i);
-			Connection.getClientInstance().sendSerializedObject(request);
+			request.setParameters(parameters);
+			ConnectionThread loadDevicesThread = new DevicesLoaderThread(request);
+			loadDevicesThread.start();
 		}
 	}
 }

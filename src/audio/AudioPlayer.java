@@ -149,5 +149,8 @@ public class AudioPlayer extends Observable{
         } catch (Exception e) {}
     }
     
+    public int getStatus(){
+    	return playerStatus;
+    }
 
 }

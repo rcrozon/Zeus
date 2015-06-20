@@ -1,13 +1,14 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playlist extends Component {
 	
 	private static final long 	serialVersionUID = 1L;
-	private ArrayList<Music> 	moMusics;
+	private List<Music> 	moMusics;
 	
-	public Playlist(String name, ArrayList<Music> poMusics){
+	public Playlist(String name, List<Music> poMusics){
 		this.name = name;
 		this.moMusics = poMusics;
 	}
@@ -16,14 +17,14 @@ public class Playlist extends Component {
 	/**
 	 * @return the moEntry
 	 */
-	public ArrayList<Music> getMoMusics() {
+	public List<Music> getMoMusics() {
 		return moMusics;
 	}
 
 	/**
 	 * @param moEntry the moEntry to set
 	 */
-	public void setMoMusics(ArrayList<Music> poMusics) {
+	public void setMoMusics(List<Music> poMusics) {
 		this.moMusics = poMusics;
 	}
 }

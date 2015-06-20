@@ -32,30 +32,34 @@ public class Player implements Observer{
 	public Player(){
 		
 		System.out.println("CREATION PLAYER");
-		moPlaylist = new Playlist("playlist", XMLCreator.getPlaylistByName("Playlist2"));
+//		moPlaylist = new Playlist("playlist", XMLCreator.getPlaylistByName("Playlist2"));
 		for(Music oM : moPlaylist.getMoMusics()){
 			System.out.println(oM.getMsPath());
+//			playMusic(oM);
 		}
-		
-		JFrame frame = new JFrame();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 	}
 	
-	/**
- 	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Player oPlayer = new Player();
-	}
+//	public Player(Playlist playlist){
+//		moPlaylist = playlist;
+//		System.out.println("CREATION PLAYER");
+//		if (!playlist.getMoMusics().isEmpty()){
+//			playMusic(playlist.getMoMusics().get(0));
+//		}
+//	}
+//	
+//	/**
+// 	 * @param args
+//	 */
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		Player oPlayer = new Player();
+//	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg.equals(AudioPlayer.STOPPED)){
 			stopMusic();
-		}else if (moPlaylist != null && moPlaylist.getMoMusics() != null && moPlaylist.getMoMusics().size() > 0){
+		}else if (moPlaylist != null && moPlaylist.getMoMusics() != null && !moPlaylist.getMoMusics().isEmpty()){
 			try{
 				if (moPlaylist.getMoMusics().get(moPlaylist.getMoMusics().indexOf(moMusicPlaying)+1) != null){
 					playMusic(moPlaylist.getMoMusics().get(moPlaylist.getMoMusics().indexOf(moMusicPlaying)+1));
@@ -118,6 +122,10 @@ public class Player implements Observer{
 	
 	public static void setCurrentPlaylist(Playlist poPlaylist){
 		moPlaylist = poPlaylist;
+	}
+	
+	public AudioPlayer getAudioPlayer(){
+		return moAudioPlayer;
 	}
 }
 

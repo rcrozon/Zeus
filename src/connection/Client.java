@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import tools.Serializor;
 import utilEnum.ParamEnum;
+import configuration.Configuration;
 import constants.ConstantsConnection;
 
 public class Client extends Connection {
@@ -40,6 +42,8 @@ public class Client extends Connection {
 		    bufferedInputStream.close();
 		    clientSocket.close();
 		    fileInputStream.close();
+	    } catch (ConnectException ex) {
+	    	System.out.println("Device not available");
 	    } catch (UnknownHostException e) {
 	    	e.printStackTrace();
 	    } catch (IOException e) {
